@@ -183,6 +183,7 @@ class TickerBase():
             shared._ERRORS[self.ticker] = err_msg
             if "many" not in kwargs and debug_mode:
                 print('- %s: %s' % (self.ticker, err_msg))
+                self._err_msg = err_msg
             return shared._DFS[self.ticker]
 
         # 2) fix weired bug with Yahoo! - returning 60m for 30m bars
