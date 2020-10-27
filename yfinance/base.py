@@ -54,6 +54,7 @@ class TickerBase():
 
         self._calendar = None
         self._expirations = {}
+        self._err_msg = None
 
         self._earnings = {
             "yearly": utils.empty_df(),
@@ -162,6 +163,7 @@ class TickerBase():
             shared._ERRORS[self.ticker] = err_msg
             if "many" not in kwargs and debug_mode:
                 print('- %s: %s' % (self.ticker, err_msg))
+                self._err_msg = err_msg
             return shared._DFS[self.ticker]
 
         elif "chart" not in data or data["chart"]["result"] is None or \
@@ -170,6 +172,7 @@ class TickerBase():
             shared._ERRORS[self.ticker] = err_msg
             if "many" not in kwargs and debug_mode:
                 print('- %s: %s' % (self.ticker, err_msg))
+                self._err_msg = err_msg
             return shared._DFS[self.ticker]
 
         # parse quotes
